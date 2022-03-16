@@ -17,15 +17,18 @@ namespace ArtOfRallySuiVR
 			}
 		}
 
+		[System.Obsolete]
 		void Awake()
 		{
+			XRDevice.SetTrackingSpaceType(TrackingSpaceType.Stationary);
 		}
 
+		[System.Obsolete]
 		void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.F8))
 			{
-				UnityEngine.XR.XRDevice.SetTrackingSpaceType(TrackingSpaceType.Stationary);
+				UnityEngine.XR.InputTracking.Recenter();
 			}
 		}
 	}
