@@ -43,7 +43,6 @@ namespace ArtOfRallySuiVR.Hacks
 			var rotationCamera = mainVRTransform.InverseTransformDirection(this.transform.forward);
 			reorientNodeTransform.localEulerAngles = -rotationCamera;
 			reorientNodeTransform.eulerAngles = new Vector3(0, reorientNodeTransform.eulerAngles.y - 90, 0);
-			
 		}
 
 		void FixedUpdate()

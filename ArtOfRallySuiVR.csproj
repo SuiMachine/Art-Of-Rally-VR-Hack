@@ -34,5 +34,9 @@
       <HintPath>D:\Steam\steamapps\common\artofrally\artofrally_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>D:\Steam\steamapps\common\artofrally\artofrally_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 </Project>
