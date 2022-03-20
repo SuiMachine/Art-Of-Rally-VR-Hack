@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace ArtOfRallySuiVR.Hacks
 {
@@ -8,11 +9,11 @@ namespace ArtOfRallySuiVR.Hacks
 	{
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(CameraQualitySettings), nameof(CameraQualitySettings.LoadSettings))]
-		public static void LoadSettingsPostfix(Transform ___transform)
+		public static void LoadSettingsPostfix(HxVolumetricCamera ___HxVolumetricCamera)
 		{
-			if(___transform.name == "MainCamera")
+			if(___HxVolumetricCamera.GetComponent<VR_Recenter>() == null)
 			{
-
+				___HxVolumetricCamera.gameObject.AddComponent<VR_Recenter>();
 			}
 		}
 	}
