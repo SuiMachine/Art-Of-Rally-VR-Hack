@@ -6,50 +6,42 @@ namespace ArtOfRallySuiVR.Hacks
 {
 	public class VR_Recenter : MonoBehaviour
 	{
+#pragma warning disable CS0618 // Type or member is obsolete
 		public static List<VR_Recenter> VRCameraInstances = new List<VR_Recenter>();
-		Transform mainVRTransform;
+		Camera cameraRef;
 		Transform reorientNodeTransform;
-		Transform recenterTransform;
 
-		void Awake()
+		void Start()
 		{
+			cameraRef = this.GetComponent<Camera>();
 			if(!this.transform.parent.name.StartsWith("VR"))
 			{
-				var mainVRNode = new GameObject("VRMainNode");
-				mainVRNode.transform.position = this.transform.position;
-				mainVRNode.transform.rotation = this.transform.rotation;
-				mainVRNode.transform.localScale = this.transform.localScale;
-				mainVRNode.transform.SetParent(this.transform.parent, true);
-				mainVRTransform = mainVRNode.transform;
-
-				var reorientNode = new GameObject("VRReorientNode");
-				reorientNode.transform.SetParent(mainVRTransform, true);
-				reorientNode.transform.localRotation = Quaternion.identity;
-				reorientNode.transform.localPosition = Vector3.zero;
-				reorientNodeTransform = reorientNode.transform;
-
-				var recenterNode = new GameObject("VRRecenterNode");
-				this.recenterTransform = recenterNode.transform;
-				recenterNode.transform.SetParent(reorientNode.transform, true);
-				this.recenterTransform.localPosition = Vector3.zero;
-				this.recenterTransform.localRotation = Quaternion.identity;
-				this.transform.SetParent(recenterNode.transform, true);
+				UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+				var reorientNode = new GameObject("VRReorient");
+				reorientNode.transform.SetParent(this.transform.parent, true);
+				reorientNode.transform.localPosition = this.transform.localPosition;
+				reorientNode.transform.localRotation = this.transform.localRotation;
+				this.reorientNodeTransform = reorientNode.transform;
+				this.transform.SetParent(reorientNodeTransform.transform, true);
 				VRCameraInstances.Add(this);
-				AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance?.Instance_AddCamera(this.GetComponent<Camera>());
+				SetForward();
+				if(AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance != null)
+				{
+					var vegeSystems = AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance.VegetationSystemList;
+					foreach(var vegeSystem in vegeSystems)
+					{
+						foreach(var vegeCam in vegeSystem.VegetationStudioCameraList)
+						{
+							vegeCam.CameraCullingMode = AwesomeTechnologies.VegetationSystem.CameraCullingMode.Complete360;
+						}
+					}
+				}
 			}
 		}
 
 		internal void SetForward()
 		{
-			var rotationCamera = mainVRTransform.InverseTransformDirection(this.transform.forward);
-			reorientNodeTransform.localEulerAngles = -rotationCamera;
-			reorientNodeTransform.eulerAngles = new Vector3(0, reorientNodeTransform.eulerAngles.y - 90, 0);
-		}
-
-		void FixedUpdate()
-		{
-			recenterTransform.localPosition = -this.transform.localPosition;
-			recenterTransform.localRotation = Quaternion.identity;
+			reorientNodeTransform.localEulerAngles = new Vector3(0, -this.transform.localEulerAngles.y, 0);
 		}
 
 		void Update()
@@ -62,7 +54,8 @@ namespace ArtOfRallySuiVR.Hacks
 		{
 			if (VRCameraInstances.Contains(this))
 				VRCameraInstances.Remove(this);
-			AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance?.Instance_RemoveCamera(this.GetComponent<Camera>());
 		}
+#pragma warning restore CS0618 // Type or member is obsolete
+
 	}
 }

@@ -5,7 +5,7 @@ namespace ArtOfRallySuiVR.Hacks
 {
 	public class VRUIManager : MonoBehaviour
 	{
-		Camera lastCamera;
+		/*Camera lastCamera;
 
 		void Start()
 		{
@@ -39,6 +39,6 @@ namespace ArtOfRallySuiVR.Hacks
 					postProcess.volumeLayer &= ~guiLayer;
 				}
 			}
-		}
+		}*/
 	}
 }

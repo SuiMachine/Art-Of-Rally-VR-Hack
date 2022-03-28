@@ -13,7 +13,6 @@ namespace ArtOfRallySuiVR
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             loggerInstance = Logger;
             harmonyInstance = new HarmonyLib.Harmony("local.artofrallysuivr.suicidemachine");
-            VRCameraAdditionalController.Init();
             harmonyInstance.PatchAll();
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} initialized!");
 
