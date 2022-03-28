@@ -8,7 +8,7 @@ namespace ArtOfRallySuiVR.Hacks
 
 		public static void Init()
 		{
-			if(Instance == null)
+			if (Instance == null)
 			{
 				var go = new GameObject("GlobalVRInstancesManager");
 				DontDestroyOnLoad(go);
@@ -18,11 +18,17 @@ namespace ArtOfRallySuiVR.Hacks
 
 		void Update()
 		{
-			if(Input.GetKeyDown(KeyCode.F8))
+			if (Input.GetKeyDown(KeyCode.F8))
 			{
-				foreach (var camera in VR_Recenter.VRCameraInstances)
+				for (int i = VR_Recenter.VRCameraInstances.Count - 1; i >= 0; i--)
 				{
-					camera.SetForward();
+					if (VR_Recenter.VRCameraInstances[i] == null)
+						VR_Recenter.VRCameraInstances.RemoveAt(i);
+					else
+					{
+						var cam = VR_Recenter.VRCameraInstances[i];
+						cam.SetForward();
+					}
 				}
 			}
 		}

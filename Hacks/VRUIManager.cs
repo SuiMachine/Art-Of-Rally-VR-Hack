@@ -5,7 +5,9 @@ namespace ArtOfRallySuiVR.Hacks
 {
 	public class VRUIManager : MonoBehaviour
 	{
-		/*Camera lastCamera;
+		Camera lastCamera;
+		private UnityEngine.UI.Graphic[] graphics;
+		private UnityEngine.Rendering.CompareFunction desiredUIComparison = UnityEngine.Rendering.CompareFunction.Always;
 
 		void Start()
 		{
@@ -14,6 +16,9 @@ namespace ArtOfRallySuiVR.Hacks
 			{
 				canvas.renderMode = RenderMode.WorldSpace;
 			}
+
+
+			graphics = GetComponentsInChildren<UnityEngine.UI.Graphic>();
 		}
 
 		void Update()
@@ -39,6 +44,16 @@ namespace ArtOfRallySuiVR.Hacks
 					postProcess.volumeLayer &= ~guiLayer;
 				}
 			}
-		}*/
+
+			foreach(var graphic in graphics)
+			{
+				Material material = graphic.materialForRendering;
+
+				if (material == null)
+					continue;
+
+				material.SetInt("unity_GUIZTestMode", (int)desiredUIComparison);
+			}
+		}
 	}
 }
