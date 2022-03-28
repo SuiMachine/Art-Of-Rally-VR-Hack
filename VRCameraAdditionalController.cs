@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.XR;
 
 namespace ArtOfRallySuiVR
 {
@@ -20,7 +19,7 @@ namespace ArtOfRallySuiVR
 		[System.Obsolete]
 		void Awake()
 		{
-			XRDevice.SetTrackingSpaceType(TrackingSpaceType.Stationary);
+			UnityEngine.XR.InputTracking.disablePositionalTracking = true;
 		}
 
 		[System.Obsolete]

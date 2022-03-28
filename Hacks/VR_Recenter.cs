@@ -35,6 +35,7 @@ namespace ArtOfRallySuiVR.Hacks
 				this.recenterTransform.localRotation = Quaternion.identity;
 				this.transform.SetParent(recenterNode.transform, true);
 				VRCameraInstances.Add(this);
+				AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance?.Instance_AddCamera(this.GetComponent<Camera>());
 			}
 		}
 
@@ -61,6 +62,7 @@ namespace ArtOfRallySuiVR.Hacks
 		{
 			if (VRCameraInstances.Contains(this))
 				VRCameraInstances.Remove(this);
+			AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance?.Instance_RemoveCamera(this.GetComponent<Camera>());
 		}
 	}
 }
