@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using ArtOfRallySuiVR.Hacks;
+using BepInEx;
 
 namespace ArtOfRallySuiVR
 {
@@ -14,8 +15,8 @@ namespace ArtOfRallySuiVR
             loggerInstance = Logger;
             harmonyInstance = new HarmonyLib.Harmony("local.artofrallysuivr.suicidemachine");
             harmonyInstance.PatchAll();
+            GlobalVRInstancesManager.Init();
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} initialized!");
-
         }
     }
 }

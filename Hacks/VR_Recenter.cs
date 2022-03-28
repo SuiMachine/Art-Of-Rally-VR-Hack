@@ -39,15 +39,9 @@ namespace ArtOfRallySuiVR.Hacks
 			}
 		}
 
-		internal void SetForward()
+		public void SetForward()
 		{
 			reorientNodeTransform.localEulerAngles = new Vector3(0, -this.transform.localEulerAngles.y, 0);
-		}
-
-		void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.F8))
-				SetForward();
 		}
 
 		void OnDestroy()
