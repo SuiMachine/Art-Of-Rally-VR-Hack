@@ -4,35 +4,27 @@ namespace ArtOfRallySuiVR.Hacks
 {
 	public class VRInGameUIBehaviour : MonoBehaviour
 	{
+		private Canvas[] canvases;
+
 		void Start()
 		{
 			Universal.ChangeUICompareZTestMode.SetGraphicsZOrderTestMode(this.gameObject);
+			canvases = GetComponentsInChildren<Canvas>();
 		}
 
-		Canvas[] canvases = null;
-
-		void Update()
+		void LateUpdate()
 		{
-			if(canvases == null)
-				canvases = this.GetComponentsInChildren<Canvas>(true);
+			var direction = Camera.current.transform.parent.parent.forward;
+			var position = Camera.current.transform.position + direction * 25f;
+			var rotation = Quaternion.Euler(0, 180, 0);
+			this.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-			var flatRotation = Quaternion.Euler(0, Camera.current.transform.eulerAngles.y, 0);
-			foreach (var canvas in canvases)
+			foreach(var canvas in canvases)
 			{
-				if (canvas != null)
-				{
-					canvas.renderMode = RenderMode.WorldSpace;
-					canvas.transform.position = Camera.current.transform.position + flatRotation * Vector3.forward * 25;
-					canvas.transform.LookAt(Camera.current.transform);
-					canvas.transform.eulerAngles = new Vector3(0, canvas.transform.eulerAngles.y + 180, 0);
-					canvas.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-				}
-			}
-
-			if (this.gameObject.scene.name == "MainMenu")
-			{
-				this.enabled = false;
-				return;
+				canvas.transform.position = position;
+				canvas.transform.LookAt(Camera.current.transform.position, Vector3.up);
+				canvas.transform.rotation *= rotation;
+				canvas.renderMode = RenderMode.WorldSpace;
 			}
 		}
 	}
