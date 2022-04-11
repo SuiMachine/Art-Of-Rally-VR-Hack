@@ -68,6 +68,11 @@ namespace ArtOfRallySuiVR.Hacks
 			}
 		}
 
+		internal void SelfDestroy()
+		{
+			Destroy(this);
+		}
+
 		void Update()
 		{
 			if(beautifyRef != null)

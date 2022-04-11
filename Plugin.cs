@@ -11,7 +11,11 @@ namespace ArtOfRallySuiVR
 
         private void Awake()
         {
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+#pragma warning disable CS0618 // Type or member is obsolete
+			UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+			Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             loggerInstance = Logger;
             harmonyInstance = new HarmonyLib.Harmony("local.artofrallysuivr.suicidemachine");
             harmonyInstance.PatchAll();

@@ -10,9 +10,19 @@ namespace ArtOfRallySuiVR.Hacks
 		[HarmonyPatch(typeof(UIManager), "Awake")]
 		public static void UIManagerPostfix(UIManager __instance)
 		{
-			if(!__instance.GetComponent<VRUIManager>())
+			if (__instance.gameObject.scene.name == Universal.ConstSceneNames.MainMenu)
 			{
-				__instance.gameObject.AddComponent<VRUIManager>();
+				if (!__instance.GetComponent<VRMainMenuBehaviour>())
+				{
+					__instance.gameObject.AddComponent<VRMainMenuBehaviour>();
+				}
+			}
+			else
+			{
+				if (!__instance.GetComponent<VRInGameUIBehaviour>())
+				{
+					__instance.gameObject.AddComponent<VRInGameUIBehaviour>();
+				}
 			}
 		}
 	}
