@@ -9,7 +9,7 @@ namespace ArtOfRallySuiVR.Hacks
 		void Start()
 		{
 			Universal.ChangeUICompareZTestMode.SetGraphicsZOrderTestMode(this.gameObject);
-			canvases = GetComponentsInChildren<Canvas>();
+			canvases = GetComponentsInChildren<Canvas>(true);
 		}
 
 		void LateUpdate()
