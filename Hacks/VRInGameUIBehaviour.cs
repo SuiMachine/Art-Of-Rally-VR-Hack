@@ -17,7 +17,7 @@ namespace ArtOfRallySuiVR.Hacks
 			var direction = Camera.current.transform.parent.parent.forward;
 			var position = Camera.current.transform.position + direction * 25f;
 			var rotation = Quaternion.Euler(0, 180, 0);
-			this.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+			this.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
 
 			foreach(var canvas in canvases)
 			{

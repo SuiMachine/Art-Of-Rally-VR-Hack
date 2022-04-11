@@ -6,7 +6,6 @@ To do
 --------
 * Camera is not always ending up in the correct position after initiation - this has to be fixed (pressing F8 should recenter the camera).
 * Many canvases has to be reworked, as their scaling breaks, when converting them from screen space to world space.
-* HUD has to be modified to be always aligned between the player's car and the camera, facing the camera.
 * Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
 
 Limitations
