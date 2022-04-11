@@ -1,0 +1,172 @@
+184 commits since v5.4.10
+
+Changelog (excluding merges):
+* (fa9b1ab) [ghorsington] CI: Only build for PRs and BEs for master
+* (bf7b059) [Kasuromi] Convert managed bool to byte in detour
+* (b7a05a6) [ghorsington] Fix C# 10 CS8983 regression
+* (4cc7ab0) [ghorsington] Bump Il2CppUnhollower and Cpp2IL versions
+* (f2c0e0f) [Geoffrey Horsington] Update feature_request.yaml
+* (f10a1f6) [Geoffrey Horsington] Update error_report.yaml
+* (9efa51b) [ManlyMarco] Add ThreadingExtensions.ForEachParallel
+* (1504d80) [ghorsington] Bump HarmonyX and MonoMod
+* (f590259) [Geoffrey Horsington] Update build_be.yml
+* (86ead2c) [Geoffrey Horsington] Update build_be.yml
+* (6daaa54) [ghorsington] Update CI build URL
+* (f3c3e89) [Bepis] Be more defensive about what executables .NET launcher can encounter
+* (bc20530) [Bepis] Move .NET framework common entrypoint code to shared project, and add silent exception logging
+* (5686f6a) [Bepis] Create .NET Core platform project
+* (a02c330) [Bepis] Implement better platform identification and descriptions in preloader log
+* (7669b6d) [ghorsington] Il2Cpp: Fix OnInstallUnityTlsInterface not being static
+* (3f172db) [Bepis] Add assembly framework and architecture checks for xna launcher
+* (c29fdcc) [js6pak] Fix process bitness detection
+* (ce04a24) [ghorsington] ProxyAssemblyGenerator: Handle exceptions better
+* (59c5adc) [ghorsington] Bump libraries
+* (4689787) [miniduikboot] CI: Emphasize architecture of game instead of OS
+* (39f6bf8) [ghorsington] Add temporary fix for crashes in some x86 games
+* (c76b09c) [ghorsington] IL2CPPDetourMethodPatcher: Improve struct handling on x64
+* (b7b8dd2) [ghorsington] Add HarmonyBackend config to Il2Cpp as well
+* (cbae410) [ghorsington] IL2CPPDetourMethodPatcher: Revert to original argument handling in x64
+* (82538d8) [ghorsington] Fix crash when logging some strings with long multi-byte characters
+* (249a185) [ghorsington] Bump Il2CppAssemblyUnhollower
+* (86549f5) [ghorsington] BepInExLogInterpolatedStringHandler: Fix typo
+* (3fd5d68) [ghorsington] ManualLogSource: Add string interpolation for Log* overloads; clean up logging
+* (4bb48c5) [ghorsington] Reformat project; apply code style
+* (81141fc) [ghorsington] Add LogInterpolatedStringHandler overload for default logger
+* (1987573) [ghorsington] Mention .NET 6 requirement in building
+* (325e0df) [ghorsington] Use C# 10, reformat project
+* (62e27a9) [ghorsington] CI: Build with .NET 6
+* (b57eac2) [ghorsington] Update README
+* (acf2332) [ghorsington] Speed up build script by caching dependency downloads
+* (cc1db2c) [ghorsington] Bump CakeBuild to 2.0.0; clean up build script
+* (e3e944d) [ghorsington] Bump package versions
+* (30a1089) [ghorsington] Update calls to RegisterTypeInIl2Cpp
+* (7562726) [ghorsington] Bump package versions
+* (1fd5c19) [Tatsuyuki Ishi] doorstop: Pass on any launch arguments
+* (906a3ae) [Tatsuyuki Ishi] doorstop: Inject the correct assembly
+* (50accb1) [GeBo1] Resolve symlinks recursively
+* (8b4a0f6) [ghorsington] Remove unneeded logging
+* (3ffea3d) [ghorsington] Attempt to resolve symlinks
+* (8f6d04c) [ghorsington] Add error when using *nix build with Windows executable
+* (919d1ee) [Geoffrey Horsington] Support new Steam bootstrapper on Linux
+* (a1cd9be) [ghorsington] Add IL2CPP.UpdateUnhollowedAssemblies configuration option
+* (ad18997) [Simon Kelly] Fix syntax error
+* (67eb06e) [Simon Kelly] Support returning Il2Cpp IEnumerators which had been compiler generated
+* (e66c15b) [ghorsington] Add process path to mutex name
+* (660ecc8) [Simon Kelly] Move mutex and change mutex name
+* (f232aac) [Simon Kelly] Prevent multiple instances of BepInEx from running their chainloader at the same time
+* (ed3c169) [ghorsington] Il2Cpp: Check both GameAssembly and UserAssembly
+* (e366c88) [Geoffrey Horsington] Update README.md
+* (3182baa) [Geoffrey Horsington] Update README.md
+* (f57f778) [ghorsington] Bump Il2CppAssemblyUnhollower
+* (1571e91) [ghorsington] Bump Il2CppAssemblyUnhollower
+* (5acf970) [ghorsington] Il2CppManagedEnumerator: fix missing operand in ldloca
+* (5a8dbe3) [ghorsington] Bump Il2CppAssemblyUnhollower and Cpp2IL
+* (4530c98) [ghorsington] Il2Cpp: Add MonoBehaviour.StartCoroutine extension with managed IEnumerator
+* (32d1be5) [ghorsington] Il2Cpp: Add wrappers for Il2Cpp IEnumerator and IEnumerable interop
+* (7cc5d8f) [ghorsington] Bump Il2CppAssemblyUnhollower, bump reference libs
+* (990c0ec) [ghorsington] Don't pull last successful commit in forks
+* (bcedd3f) [ghorsington] Don't try to push BE builds in forks
+* (7f1f139) [ghorsington] Force .sh to LF EOF
+* (1128b5f) [ghorsington] WindowsConsoleDriver: Fix console size checking
+* (8ff2c10) [ghorsington] Clean up console listener logic
+* (dbe443d) [ghorsington] Use PackageOutputPath
+* (fcadb80) [ghorsington] Bump Il2CppUnhollower
+* (f85b196) [ghorsington] Update README
+* (92a1d17) [ghorsington] Remove old CI script
+* (802e7d0) [Geoffrey Horsington] Update build_be.yml
+* (3f7b1d1) [Geoffrey Horsington] Create build.yml
+* (22a568e) [ghorsington] Ensure build.sh is executable
+* (757be8f) [Geoffrey Horsington] Create build_be.yml
+* (581d7e5) [Geoffrey Horsington] Update BepInEx.IL2CPP.csproj
+* (556cb5f) [ghorsington] ConsoleEncoding: fix buffer size computation
+* (a16d0fe) [ghorsington] WindowsConsoleDriver: check that Console.WindowWidth and WindowHeight exist
+* (ade701c) [ghorsington] Bump Il2CppUnhollower version
+* (3730f34) [ghorsington] Bump Il2CppAssemblyUnhollower
+* (2a7aa52) [ghorsington] Include AssemblyUnhollower, Cpp2Il and Il2CppDumper into hash computation
+* (f377543) [ghorsington] Update README
+* (ad0e751) [ghorsington] Bump packages
+* (a6b2c1f) [js6pak] Fix WindowsConsoleDriver
+* (33f6c6c) [js6pak] Fix runtime errors
+* (457afcd) [ghorsington] Trigger CI
+* (c44ff9e) [js6pak] Move the check into WindowsConsoleDriver
+* (1f4a951) [js6pak] Stop polluting il2cpp plugins using the nuget package with Il2CppReferenceLibs.Core
+* (9b3d32a) [js6pak] Set ConsoleManager alreadyActive on wine
+* (b746f57) [js6pak] ConfigDumpDummyAssemblies
+* (337d20c) [ghorsington] Add Unity-like AddComponent to add custom MonoBehaviours to the scene
+* (3d1effa) [ghorsington] Fix console window delegate resolving
+* (7e90415) [ghorsington] Fix random access denied on solution build
+* (fcd5242) [ghorsington] Bump Il2CppUnhollower version
+* (72e1e2c) [ghorsington] ConsoleWindow: always resolve user32 from system folder
+* (2117f32) [ghorsington] Remove unneeded build path
+* (703811e) [ghorsington] Fix documentation file path
+* (07d47c2) [ghorsington] Test CI permissions
+* (12c3a94) [ghorsington] Try to fix CI
+* (66c6e50) [ghorsington] Also build netstandard2.0 version of BepInEx.Preloader.Unity
+* (e613bbe) [ghorsington] Include netstandard2.0 to BepInEx.Unity for NuGet package
+* (fbf671c) [ghorsington] Trigger CI
+* (bf4fb14) [ghorsington] Bump Cake.Tool to 1.2.0
+* (9cdee65) [ghorsington] Fix missing type spec
+* (b219c16) [ghorsington] Use process name for preloader assembly dump path; fixes #303
+* (c85ece0) [ghorsington] Delete hardpatcher
+* (639dbb4) [ghorsington] Bump NuGet packages
+* (4304b81) [ghorsington] Include license via URL for compat
+* (1822b92) [ghorsington] Add NuGet push key to CI
+* (18e5b15) [ghorsington] Adjust package descriptions
+* (1cf4167) [ghorsington] Add PushNuGet build target
+* (1a21730) [ghorsington] Add common NuGet information
+* (bbe8284) [ghorsington] Add logo assets
+* (02952f5) [ghorsington] Use Microsoft.NETFramework.ReferenceAssemblies
+* (bc1572a) [ghorsington] Generate NuGet packages on release build for certain libs
+* (4ba5253) [ghorsington] Use offical BepInEx NuGet feed
+* (ed18974) [Bepis] Handle alternate entrypoint signatures for .NET launcher
+* (6650c4d) [Bepis] Add support for Cpp2IL
+* (53c775a) [Bepis] Improve assembly fixes for NetLauncher
+* (0e6ad15) [Bepis] Add an unhandled exception handler for NetLauncher
+* (3c6cef3) [Bepis] Fix preloader log not appearing in file log for NetLauncher
+* (8b99b63) [Geoffrey Horsington] Error report: clarify usage [skip ci]
+* (b74a8b5) [Geoffrey Horsington] Bug report template: fix log rendering [skip ci]
+* (9cc0211) [Bepis] Revamp AssemblyPatcher and patcher plugins
+* (41c8e23) [Geoffrey Horsington] Delete old feature request [skip ci]
+* (6928453) [Geoffrey Horsington] Create feature request form [skip ci]
+* (a6d8f2d) [Geoffrey Horsington] Adjust error report description [skip ci]
+* (bee46ee) [Geoffrey Horsington] Delete old bug report template [skip ci]
+* (7caa33d) [Geoffrey Horsington] Add error report form [skip ci]
+* (97a3b71) [Geoffrey Horsington] Remove default title in bug form [skip ci]
+* (bc3121a) [Geoffrey Horsington] Update new form [skip ci]
+* (1be6ba3) [Geoffrey Horsington] Create new bug report form [skip ci]
+* (b68c846) [ghorsington] Trigger [ci skip]
+* (eca931a) [ghorsington] Remove CI skip from script
+* (04448c7) [ghorsington] Trigger [ci skip]
+* (da59cae) [ghorsington] Don't delete build after CI skip
+* (49e112a) [ghorsington] Format ci script
+* (d8c9b9a) [ghorsington] Trigger build
+* (d273836) [ghorsington] Delete skipped build [ci skip]
+* (bab7789) [ghorsington] Move skip to proper place [ci skip]
+* (9f3b5ff) [ghorsington] Remove ci skip from build script [ci skip]
+* (3813007) [ghorsington] Add skip ci [ci skip]
+* (a19cecc) [Geoffrey Horsington] Create config.yml
+* (0461ab4) [js6pak] Make stacktraces Error instead of Debug
+* (e9375b8) [Bepis] Update README.md
+* (2838bb5) [Bepis] Fix IL2CPP Unity log source displaying nothing
+* (b47e22d) [Bepis] Implement IL2CPP deobfuscation map support
+* (3e71319) [ghorsington] Add PatcherPluginPath to TypeLoader resolver
+* (b10e4dd) [Geoffrey Horsington] Update README.md
+* (fc7b69c) [Geoffrey Horsington] Update README.md
+* (474c234) [ghorsington] Clarify config option; cleanup
+* (7c5dffe) [ghorsington] Update mono libs
+* (4cf47c8) [js6pak] Update default url
+* (c841ee8) [js6pak] Add automatic downloading of unity base libraries
+* (1b852cd) [ghorsington] Update UnityLibs
+* (0ff484d) [js6pak] Use Il2CppDumper dummy assemblies directly
+* (83a1071) [ghorsington] Update README
+* (8c97861) [ghorsington] Update Il2Cpp doorstop config
+* (87b7f98) [ghorsington] Update Il2cppAssemblyUnhollower
+* (e761d5f) [ghorsington] Update README
+* (73c1a24) [ghorsington] Update Doorstop to 3.4.0.0
+* (d1cafd2) [ghorsington] Update Il2CppDumper and Il2CppUnhollower
+* (64a75b8) [Bepis] Fix .NET launcher console not working
+* (048943c) [Geoffrey Horsington] Rename Bug report -> Issue report
+* (051d0d6) [ghorsington] Bump Il2CppAssemblyUnhollower.BaseLib
+* (34be5ad) [ghorsington] Update mono libs
+* (43c0d2f) [ghorsington] Update mono libs
+* (cd4c90e) [ghorsington] Fix #240
