@@ -15,3 +15,7 @@ Limitations
 Things that won't happen
 --------
 * Support for VR controllers. There just isn't any point for it. Just use a gamepad or wheel or something.
+
+Installation
+--------
+* Copy the files from Release directory into the game directory. Then start the game with ```-vrmode OpenVR``` command-line argument (otherwise it starts it as None).
