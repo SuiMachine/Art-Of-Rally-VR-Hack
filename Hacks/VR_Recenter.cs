@@ -75,7 +75,8 @@ namespace ArtOfRallySuiVR.Hacks
 
 		void Update()
 		{
-			if(beautifyRef != null)
+			reorientNodeTransform.transform.localPosition = Vector3.zero;
+			if (beautifyRef != null)
 			{
 				beautifyRef.depthOfField = false;
 			}
@@ -83,7 +84,10 @@ namespace ArtOfRallySuiVR.Hacks
 
 		public IEnumerator SetForwardDelayed()
 		{
-			yield return null;
+			//This is wrong
+			//We need to hook the intro segment somehow and set forward during it
+			yield return new WaitForEndOfFrame();
+			yield return new WaitForEndOfFrame();
 			SetForward();
 		}
 
@@ -91,7 +95,6 @@ namespace ArtOfRallySuiVR.Hacks
 
 		public void SetForward()
 		{
-			reorientNodeTransform.transform.localPosition = Vector3.zero;
 			reorientNodeTransform.localEulerAngles = new Vector3(0, -this.transform.localEulerAngles.y, 0);
 		}
 
