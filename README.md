@@ -7,7 +7,7 @@ To do
 * Camera should now end up in correct position, but its orientation is not always correct (especially in main menu). When in-game, you can press F8 to reorient it (there is no workaround for menu)
 * Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
 * Correct camera behaviour after stage end.
-* Correct camera behaviour at the beginning of the stage (during intro) and disable letterboxing - set the text to be bigger!
+* Correct camera behaviour at the beginning of the stage (during intro).
 
 Limitations
 --------

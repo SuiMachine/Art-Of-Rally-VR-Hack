@@ -34,6 +34,27 @@ namespace ArtOfRallySuiVR.Hacks
 					otherTransforms.Add(largeBG);
 				else
 					Plugin.loggerInstance.LogError("Could not find Large BG in hierarchy!");
+
+				var stageIntroCinematic = this.transform.Find("Panels/Stage/Intro/Intro Cinematic");
+				if(stageIntroCinematic != null)
+				{
+					stageIntroCinematic.localScale = new Vector3(3, 3, 3);
+				}
+				else
+					Plugin.loggerInstance.LogError("Could not find Stage/Intro/Intro Cinematic in hierarchy!");
+
+
+				//Destroy letterbox that just won't work correctly in VR.... unless we make it absurdly big
+				var Letterbox = this.transform.Find("Panels/Letterbox");
+				if (Letterbox != null)
+				{
+					//We don't want to destroy letterbox to make sure that scripts don't break, but we will destroy images inside!
+					for (int i = Letterbox.childCount - 1; i >= 0; i--)
+						Destroy(Letterbox.GetChild(i).gameObject);
+				}
+				else
+					Plugin.loggerInstance.LogError("Could not find Letterbox in hierarchy!");
+
 			}
 
 
