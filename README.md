@@ -4,9 +4,10 @@ Currently an experimental VR hack for Art of Rally.
 
 To do
 --------
-* Camera is not always ending up in the correct position after initiation - this has to be fixed (pressing F8 should recenter the camera).
-* Many canvases has to be reworked, as their scaling breaks, when converting them from screen space to world space.
+* Camera should now end up in correct position, but its orientation is not always correct (especially in main menu). When in-game, you can press F8 to reorient it (there is no workaround for menu)
 * Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
+* Correct camera behaviour after stage end.
+* Correct camera behaviour at the beginning of the stage (during intro) and disable letterboxing - set the text to be bigger!
 
 Limitations
 --------
