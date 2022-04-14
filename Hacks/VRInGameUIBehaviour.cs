@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ArtOfRallySuiVR.Hacks
 {
@@ -55,9 +57,48 @@ namespace ArtOfRallySuiVR.Hacks
 				else
 					Plugin.loggerInstance.LogError("Could not find Letterbox in hierarchy!");
 
+				var HUD = this.transform.Find("HUD");
+				if (HUD != null)
+					CorrectHUD(HUD);
+				else
+					Plugin.loggerInstance.LogError("Could not find HUD in hierarchy!");
 			}
+		}
 
+		private void CorrectHUD(Transform hud)
+		{
+			var ScreenFade = hud.Find("ScreenFade");
+			if (ScreenFade != null)
+			{
+				ScreenFade.localPosition = new Vector3(0, 0, -20);
+				ScreenFade.localScale = new Vector3(999, 999, 999);
+			}
+			else
+				Plugin.loggerInstance.LogError("Could not find Screenfade in hierarchy!");
 
+			var bottomHUD = hud.Find("BottomHud");
+			if (bottomHUD != null)
+			{
+				var images = bottomHUD.GetComponentsInChildren<Image>(true);
+				foreach(var image in images)
+				{
+					image.color = new Color(image.color.r, image.color.g, image.color.b, 0.85f);
+				}
+			}
+			else
+				Plugin.loggerInstance.LogError("Could not find bottomHUD in hierarchy!");
+
+			var timeHUD = hud.Find("TimeHud");
+			if (timeHUD != null)
+			{
+				var images = timeHUD.GetComponentsInChildren<Image>(true);
+				foreach (var image in images)
+				{
+					image.color = new Color(image.color.r, image.color.g, image.color.b, 0.85f);
+				}
+			}
+			else
+				Plugin.loggerInstance.LogError("Could not find TimeHud in hierarchy!");
 		}
 
 		void LateUpdate()
