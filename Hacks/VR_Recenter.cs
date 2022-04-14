@@ -30,7 +30,6 @@ namespace ArtOfRallySuiVR.Hacks
 				this.reorientNodeTransform = reorientNode.transform;
 				this.transform.SetParent(reorientNodeTransform.transform, true);
 				VRCameraInstances.Add(this);
-				StartCoroutine(SetForwardDelayed());
 				if(AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance != null)
 				{
 					var vegeSystems = AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance.VegetationSystemList;
@@ -82,16 +81,14 @@ namespace ArtOfRallySuiVR.Hacks
 			}
 		}
 
-		public IEnumerator SetForwardDelayed()
+		public static void SetAllCamerasForward()
 		{
-			//This is wrong
-			//We need to hook the intro segment somehow and set forward during it
-			yield return new WaitForEndOfFrame();
-			yield return new WaitForEndOfFrame();
-			SetForward();
+			for(int i=0; i<VRCameraInstances.Count; i++)
+			{
+				if(VRCameraInstances[i] != null)
+					VRCameraInstances[i].SetForward();
+			}
 		}
-
-
 
 		public void SetForward()
 		{
