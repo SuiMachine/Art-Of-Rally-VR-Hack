@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ArtOfRallySuiVR</AssemblyName>
-    <Description>My first plugin</Description>
+    <Description>VR hack for Art of Rally</Description>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
