@@ -16,23 +16,6 @@ namespace ArtOfRallySuiVR.Hacks
 			}
 		}
 
-		void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.F8))
-			{
-				for (int i = VR_Recenter.VRCameraInstances.Count - 1; i >= 0; i--)
-				{
-					if (VR_Recenter.VRCameraInstances[i] == null)
-						VR_Recenter.VRCameraInstances.RemoveAt(i);
-					else
-					{
-						var cam = VR_Recenter.VRCameraInstances[i];
-						cam.SetForward();
-					}
-				}
-			}
-		}
-
 		void OnDestroy()
 		{
 			Instance = null;
