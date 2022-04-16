@@ -7,11 +7,12 @@ namespace ArtOfRallySuiVR.Hacks
 	[HarmonyPatch]
 	public class StageIntroCinematicHack
 	{
+#pragma warning disable CS0618 // Type or member is obsolete
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(StageIntroCinematic), "FinishCinematic")]
 		public static void StageIntroCinematicFinishCinematicPostfix()
 		{
-			VR_Recenter.SetAllCamerasForward();
+			UnityEngine.XR.InputTracking.Recenter();
 		}
 
 		[HarmonyPrefix]
@@ -32,7 +33,9 @@ namespace ArtOfRallySuiVR.Hacks
 			___DividingLine.rectTransform.localScale = new Vector3(___DividingLine.rectTransform.localScale.x, 0f, ___DividingLine.rectTransform.localScale.z);
 			___cameraTransform.position = ___StartingTransform.position;
 			___cameraTransform.rotation = ___StartingTransform.rotation;
-			VR_Recenter.SetAllCamerasForward();
+			UnityEngine.XR.InputTracking.Recenter();
 		}
+#pragma warning restore CS0618 // Type or member is obsolete
+
 	}
 }

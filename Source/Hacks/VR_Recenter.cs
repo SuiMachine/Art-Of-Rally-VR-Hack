@@ -1,35 +1,57 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SpatialTracking;
 
 namespace ArtOfRallySuiVR.Hacks
 {
 	public class VR_Recenter : MonoBehaviour
 	{
 #pragma warning disable CS0618 // Type or member is obsolete
-		public static List<VR_Recenter> VRCameraInstances = new List<VR_Recenter>();
-		Camera cameraRef;
-		Transform reorientNodeTransform;
+		public const string XRRigNodeName = "XRRig";
+		public const string CameraOffsetNodeName = "Camera Offset";
+		GameObject XRRigNode;
+		GameObject CameraOffsetNode;
+		CameraOffset cameraOffset;
+		TrackedPoseDriver trackedPoseDriver;
+
 		BeautifyEffect.Beautify beautifyRef;
 
 
 		void Start()
 		{
-			cameraRef = this.GetComponent<Camera>();
+			var cameraRef = this.GetComponent<Camera>();
 			beautifyRef = this.GetComponent<BeautifyEffect.Beautify>();
 			var postProcess = this.GetComponent<PostProcessVolume>();
-			if(!this.transform.parent.name.StartsWith("VR"))
+			if(CameraOffsetNode == null)
 			{
-				UnityEngine.XR.InputTracking.disablePositionalTracking = true;
-				var reorientNode = new GameObject("VRReorient");
-				reorientNode.transform.SetParent(this.transform.parent, true);
-				reorientNode.transform.localPosition = this.transform.localPosition;
-				reorientNode.transform.localRotation = this.transform.localRotation;
-				this.reorientNodeTransform = reorientNode.transform;
-				this.transform.SetParent(reorientNodeTransform.transform, true);
-				VRCameraInstances.Add(this);
+				CameraOffsetNode = new GameObject(CameraOffsetNodeName);
+				XRRigNode = new GameObject(XRRigNodeName);
+				CameraOffsetNode.transform.SetParent(XRRigNode.transform);
+				CameraOffsetNode.transform.localPosition = Vector3.zero;
+				CameraOffsetNode.transform.localRotation = Quaternion.identity;
+
+				XRRigNode.transform.SetParent(this.transform.parent);
+				XRRigNode.transform.localPosition = this.transform.localPosition;
+				XRRigNode.transform.localRotation = this.transform.localRotation;
+
+				cameraOffset = XRRigNode.AddComponent<CameraOffset>();
+				cameraOffset.cameraFloorOffsetObject = CameraOffsetNode;
+				cameraOffset.trackingSpace = UnityEngine.XR.TrackingSpaceType.Stationary;
+				cameraOffset.requestedTrackingMode = UserRequestedTrackingMode.Default;
+				cameraOffset.cameraYOffset = 1.36f;
+
+				this.transform.SetParent(CameraOffsetNode.transform, true);
+				this.transform.localPosition = Vector3.zero;
+				this.transform.localRotation = Quaternion.identity;
+				this.trackedPoseDriver = this.gameObject.AddComponent<TrackedPoseDriver>();
+				this.trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRDevice, TrackedPoseDriver.TrackedPose.Center);
+				this.trackedPoseDriver.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
+				this.trackedPoseDriver.updateType = TrackedPoseDriver.UpdateType.UpdateAndBeforeRender;
+
+				//It seems like normally you'd be a bit too small
+				XRRigNode.transform.localScale = Vector3.one * 1.1f;
+
 				if(AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance != null)
 				{
 					var vegeSystems = AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance.VegetationSystemList;
@@ -74,31 +96,10 @@ namespace ArtOfRallySuiVR.Hacks
 
 		void Update()
 		{
-			reorientNodeTransform.transform.localPosition = Vector3.zero;
 			if (beautifyRef != null)
 			{
 				beautifyRef.depthOfField = false;
 			}
-		}
-
-		public static void SetAllCamerasForward()
-		{
-			for(int i=0; i<VRCameraInstances.Count; i++)
-			{
-				if(VRCameraInstances[i] != null)
-					VRCameraInstances[i].SetForward();
-			}
-		}
-
-		public void SetForward()
-		{
-			reorientNodeTransform.localEulerAngles = new Vector3(0, -this.transform.localEulerAngles.y, 0);
-		}
-
-		void OnDestroy()
-		{
-			if (VRCameraInstances.Contains(this))
-				VRCameraInstances.Remove(this);
 		}
 #pragma warning restore CS0618 // Type or member is obsolete
 	}
