@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace ArtOfRallySuiVR.Hacks
+namespace ArtOfRallySuiVR.Hacks.HookPoints
 {
 	[HarmonyPatch]
 	class CameraQualitySettingsHack

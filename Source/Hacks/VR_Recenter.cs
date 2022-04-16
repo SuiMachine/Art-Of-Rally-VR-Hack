@@ -87,6 +87,14 @@ namespace ArtOfRallySuiVR.Hacks
 					}
 				}
 			}
+
+			if(this.gameObject.scene.name == Universal.ConstSceneNames.MainMenu)
+			{
+				VRMainMenuBehaviour.RegisterCamera(this);
+				UnityEngine.XR.InputTracking.Recenter();
+				this.XRRigNode.transform.eulerAngles = new Vector3(0, this.XRRigNode.transform.eulerAngles.y, 0);
+				VRMainMenuBehaviour.RepositionMenu();
+			}
 		}
 
 		internal void SelfDestroy()

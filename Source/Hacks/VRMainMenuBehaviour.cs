@@ -1,31 +1,56 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace ArtOfRallySuiVR.Hacks
 {
 	public class VRMainMenuBehaviour : MonoBehaviour
 	{
+		private const float SCALE = 0.005f;
+		private static VRMainMenuBehaviour instance;
+		private static VR_Recenter VrRecenterInstance;
+
 		Canvas mainCanvas;
-		private Vector3 lastCameraPosition;
 
 		void Awake()
 		{
 			mainCanvas = this.GetComponent<Canvas>();
 			Universal.ChangeUICompareZTestMode.SetGraphicsZOrderTestMode(mainCanvas.gameObject);
 			mainCanvas.renderMode = RenderMode.WorldSpace;
+			instance = this;
 		}
 
 		void Update()
 		{
-			if (lastCameraPosition != Camera.current.transform.position)
+			if(VrRecenterInstance != null)
 			{
-				var scale = 0.01f;
-				var flatRotation = Quaternion.Euler(0, Camera.current.transform.eulerAngles.y, 0);
-				mainCanvas.transform.position = Camera.current.transform.position + flatRotation * Vector3.forward * 10;
-				mainCanvas.transform.position += Vector3.up * (1080 * scale / 2);
-				mainCanvas.transform.LookAt(Camera.current.transform);
-				mainCanvas.transform.localScale = Vector3.one * scale;
-				mainCanvas.transform.localRotation *= Quaternion.Euler(0, 180, -17);
-				lastCameraPosition = Camera.current.transform.position;
+				mainCanvas.transform.LookAt(VrRecenterInstance.transform);
+				mainCanvas.transform.localRotation *= Quaternion.Euler(0, 180, 0);
+				mainCanvas.transform.localScale = Vector3.one * SCALE;
+			}
+		}
+
+		void StartRepostion() => StartCoroutine(Reposition());
+		internal static void RegisterCamera(VR_Recenter VrRecenterInstanceP) => VrRecenterInstance = VrRecenterInstanceP;
+
+		private IEnumerator Reposition()
+		{
+			//This ia stupid hack :(
+			yield return new WaitForSeconds(1);
+			if (VrRecenterInstance != null)
+			{
+				var flatRotation = Quaternion.Euler(0, VrRecenterInstance.transform.eulerAngles.y, 0);
+				mainCanvas.transform.position = VrRecenterInstance.transform.position + flatRotation * Vector3.forward * 5;
+			}
+			else
+				Plugin.loggerInstance.LogError("No camera cought in time :(");
+		}
+
+		internal static void RepositionMenu()
+		{
+			if(instance != null)
+			{
+				instance.StartRepostion();
 			}
 		}
 	}

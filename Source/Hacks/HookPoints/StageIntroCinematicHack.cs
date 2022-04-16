@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ArtOfRallySuiVR.Hacks
+namespace ArtOfRallySuiVR.Hacks.HookPoints
 {
 	[HarmonyPatch]
 	public class StageIntroCinematicHack
