@@ -4,6 +4,7 @@ Currently an experimental VR hack for Art of Rally.
 
 To do
 --------
+* Some stage intros still seem to spawn camera underground :-/
 * Various minor fixes, I guess?
 
 Limitations
