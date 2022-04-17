@@ -4,8 +4,7 @@ Currently an experimental VR hack for Art of Rally.
 
 To do
 --------
-* Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
-* Correct camera behaviour after stage end.
+* Various minor fixes, I guess?
 
 Limitations
 --------

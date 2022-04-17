@@ -53,21 +53,9 @@ namespace ArtOfRallySuiVR.Hacks
 				//It seems like normally you'd be a bit too small
 				XRRigNode.transform.localScale = Vector3.one * 1.1f;
 
-				if(AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance != null)
-				{
-					var vegeSystems = AwesomeTechnologies.VegetationStudio.VegetationStudioManager.Instance.VegetationSystemList;
-					foreach(var vegeSystem in vegeSystems)
-					{
-						foreach(var vegeCam in vegeSystem.VegetationStudioCameraList)
-						{
-							vegeCam.CameraCullingMode = AwesomeTechnologies.VegetationSystem.CameraCullingMode.Complete360;
-						}
-					}
-				}
-
 				hxVolumetricCamera = GetComponent<HxVolumetricCamera>();
 
-				if(postProcess != null)
+/*				if(postProcess != null)
 				{
 					var profile = postProcess.profile;
 					profile.TryGetSettings<DepthOfField>(out DepthOfField dofSettings);
@@ -88,13 +76,13 @@ namespace ArtOfRallySuiVR.Hacks
 						dofSettings.focalLength.overrideState = true;
 						dofSettings.focalLength.value = 0.5f;
 					}
-				}
+				}*/
 			}
 
 			var camera = this.GetComponent<Camera>();
 			if(camera != null)
 			{
-				camera.nearClipPlane = 0.01f;
+				camera.nearClipPlane = 0.02f;
 			}
 
 			if (this.gameObject.scene.name == Universal.ConstSceneNames.MainMenu)
