@@ -46,6 +46,17 @@ namespace ArtOfRallySuiVR.Hacks
 				Plugin.loggerInstance.LogError("No camera cought in time :(");
 		}
 
+		public static void SetInFront(Vector3 position, Quaternion rotation, float distance)
+		{
+			if (instance != null)
+			{
+				var destination = position + rotation * Vector3.forward * distance;
+				instance.mainCanvas.transform.position = destination;
+			}
+			else
+				Plugin.loggerInstance.LogError("No camera :(");
+		}
+
 		internal static void RepositionMenu()
 		{
 			if(instance != null)
