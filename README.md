@@ -7,11 +7,12 @@ To do
 * Camera no longer moves in menu, which makes certain elements in menu difficult, as for example you don't see a car you are selecting. This needs to be reworked - probably by teleporting the camera at the end of animator/tween (depending on what's used).
 * Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
 * Correct camera behaviour after stage end.
-* Hx Volumetric Lighting seems to be broken :(
 
 Limitations
 --------
+* The game renders in Mult-pass stereo rendering, resulting in worse performance. Single-pass seems to cause a black screen.
 * Beautify's Depth of Field seems to always render after UI elements, which makes UI unusable for the most part when converted to world space, which is why it's disabled.
+* Hx Volumetric Lighting doesn't render correctly with Multi-pass stereo rendering, so it was disabled.
 
 Things that won't happen
 --------
