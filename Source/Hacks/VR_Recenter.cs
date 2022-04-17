@@ -16,6 +16,7 @@ namespace ArtOfRallySuiVR.Hacks
 		TrackedPoseDriver trackedPoseDriver;
 
 		BeautifyEffect.Beautify beautifyRef;
+		HxVolumetricCamera hxVolumetricCamera;
 
 
 		void Start()
@@ -64,6 +65,8 @@ namespace ArtOfRallySuiVR.Hacks
 					}
 				}
 
+				hxVolumetricCamera = GetComponent<HxVolumetricCamera>();
+
 				if(postProcess != null)
 				{
 					var profile = postProcess.profile;
@@ -107,6 +110,10 @@ namespace ArtOfRallySuiVR.Hacks
 			if (beautifyRef != null)
 			{
 				beautifyRef.depthOfField = false;
+			}
+			if(hxVolumetricCamera != null)
+			{
+				hxVolumetricCamera.enabled = false;
 			}
 		}
 #pragma warning restore CS0618 // Type or member is obsolete
