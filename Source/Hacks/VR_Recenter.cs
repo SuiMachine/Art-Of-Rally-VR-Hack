@@ -10,13 +10,13 @@ namespace ArtOfRallySuiVR.Hacks
 #pragma warning disable CS0618 // Type or member is obsolete
 		public const string XRRigNodeName = "XRRig";
 		public const string CameraOffsetNodeName = "Camera Offset";
-		GameObject XRRigNode;
 		GameObject CameraOffsetNode;
-		CameraOffset cameraOffset;
+		CameraOffset XRRigBase;
 		TrackedPoseDriver trackedPoseDriver;
 
 		BeautifyEffect.Beautify beautifyRef;
 		HxVolumetricCamera hxVolumetricCamera;
+		bool menu = false;
 
 
 		void Start()
@@ -27,7 +27,7 @@ namespace ArtOfRallySuiVR.Hacks
 			if(CameraOffsetNode == null)
 			{
 				CameraOffsetNode = new GameObject(CameraOffsetNodeName);
-				XRRigNode = new GameObject(XRRigNodeName);
+				var XRRigNode = new GameObject(XRRigNodeName);
 				CameraOffsetNode.transform.SetParent(XRRigNode.transform);
 				CameraOffsetNode.transform.localPosition = Vector3.zero;
 				CameraOffsetNode.transform.localRotation = Quaternion.identity;
@@ -36,11 +36,11 @@ namespace ArtOfRallySuiVR.Hacks
 				XRRigNode.transform.localPosition = this.transform.localPosition;
 				XRRigNode.transform.localRotation = this.transform.localRotation;
 
-				cameraOffset = XRRigNode.AddComponent<CameraOffset>();
-				cameraOffset.cameraFloorOffsetObject = CameraOffsetNode;
-				cameraOffset.trackingSpace = UnityEngine.XR.TrackingSpaceType.Stationary;
-				cameraOffset.requestedTrackingMode = UserRequestedTrackingMode.Default;
-				cameraOffset.cameraYOffset = 1.36f;
+				XRRigBase = XRRigNode.AddComponent<CameraOffset>();
+				XRRigBase.cameraFloorOffsetObject = CameraOffsetNode;
+				XRRigBase.trackingSpace = UnityEngine.XR.TrackingSpaceType.Stationary;
+				XRRigBase.requestedTrackingMode = UserRequestedTrackingMode.Default;
+				XRRigBase.cameraYOffset = 1.36f;
 
 				this.transform.SetParent(CameraOffsetNode.transform, true);
 				this.transform.localPosition = Vector3.zero;
@@ -91,11 +91,18 @@ namespace ArtOfRallySuiVR.Hacks
 				}
 			}
 
-			if(this.gameObject.scene.name == Universal.ConstSceneNames.MainMenu)
+			var camera = this.GetComponent<Camera>();
+			if(camera != null)
 			{
+				camera.nearClipPlane = 0.01f;
+			}
+
+			if (this.gameObject.scene.name == Universal.ConstSceneNames.MainMenu)
+			{
+				menu = true;
 				VRMainMenuBehaviour.RegisterCamera(this);
 				UnityEngine.XR.InputTracking.Recenter();
-				this.XRRigNode.transform.eulerAngles = new Vector3(0, this.XRRigNode.transform.eulerAngles.y, 0);
+				this.XRRigBase.transform.eulerAngles = new Vector3(0, this.XRRigBase.transform.eulerAngles.y, 0);
 				VRMainMenuBehaviour.RepositionMenu();
 			}
 		}
@@ -114,6 +121,12 @@ namespace ArtOfRallySuiVR.Hacks
 			if(hxVolumetricCamera != null)
 			{
 				hxVolumetricCamera.enabled = false;
+			}
+
+			if(!menu)
+			{
+				this.CameraOffsetNode.transform.localPosition = Vector3.zero;
+				this.CameraOffsetNode.transform.localRotation = Quaternion.identity;
 			}
 		}
 #pragma warning restore CS0618 // Type or member is obsolete
