@@ -4,9 +4,9 @@ Currently an experimental VR hack for Art of Rally.
 
 To do
 --------
-* Camera no longer moves in menu, which makes certain elements in menu difficult, as for example you don't see a car you are selecting. This needs to be reworked - probably by teleporting the camera at the end of animator/tween (depending on what's used).
 * Frustum culling for vegetation is now disabled (uses only spherical culling based on distance). This has to be corrected to improve performance.
 * Correct camera behaviour after stage end.
+* Some stage intros still seem to offset the camera transform parents :(
 
 Limitations
 --------
