@@ -20,3 +20,13 @@ Things that won't happen
 Installation
 --------
 * Copy the files from Release directory into the game directory. Then start the game with ```-vrmode OpenVR``` command-line argument (otherwise it starts it as None).
+
+Third-party libraries used:
+--------
+* OpenVR (as part of Unity)
+* [BepInEx 6](https://builds.bepinex.dev/projects/bepinex_be)
+
+Made possible thanks to:
+--------
+* Raicuparta [YouTube](https://www.youtube.com/watch?v=Gt_kIrmTl44) / [Github](https://github.com/Raicuparta)
+* [UABEA project](https://github.com/nesrak1/UABEA/)
