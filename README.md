@@ -4,6 +4,7 @@ Currently an experimental VR hack for Art of Rally.
 
 To do
 --------
+* Stage 2 results (and possible later stage results) are displayed incorrectly after returning to menu on rally completion.
 * Some stage intros still seem to spawn camera underground :-/
 * Various minor fixes, I guess?
 
