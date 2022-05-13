@@ -35,7 +35,7 @@ namespace ArtOfRallySuiVR
 
 		private void ProcessConfig()
 		{
-			Hacks.HookPoints.LowCamerasDetour.Use = Config.Bind("Modifications", "ModifyCameras", false).Value;
+			Hacks.HookPoints.LowCamerasDetour.Use = Config.Bind("Modifications", "EnableLowCam", false).Value;
 		}
 	}
 }

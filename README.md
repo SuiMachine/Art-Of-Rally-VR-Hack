@@ -22,6 +22,10 @@ Installation
 --------
 * Copy the files from Release directory into the game directory. Then start the game with ```-vrmode OpenVR``` command-line argument (otherwise it starts it as None).
 
+Additional options
+--------
+* It's possible to enable low-cam in this hack. To do this run the game at least once, then edit file ```BepInEx/config/ArtOfRallySuiVR.cfg``` and set ```EnableLowCam``` to true. Note that UI may is not designed for cameras like this.
+
 Third-party libraries used:
 --------
 * OpenVR (as part of Unity)
