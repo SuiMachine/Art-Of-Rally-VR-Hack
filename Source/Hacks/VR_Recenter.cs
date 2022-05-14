@@ -1,4 +1,6 @@
-﻿using UnityEditor.XR.LegacyInputHelpers;
+﻿using ArtOfRallySuiVR.Hacks.HookPoints;
+using System;
+using UnityEditor.XR.LegacyInputHelpers;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SpatialTracking;
@@ -21,6 +23,8 @@ namespace ArtOfRallySuiVR.Hacks
 
 		void Start()
 		{
+			if(LowCamerasDetour.Use)
+				SetRoadsLayer();
 			var cameraRef = this.GetComponent<Camera>();
 			beautifyRef = this.GetComponent<BeautifyEffect.Beautify>();
 			var postProcess = this.GetComponent<PostProcessVolume>();
@@ -93,6 +97,26 @@ namespace ArtOfRallySuiVR.Hacks
 				this.XRRigBase.transform.eulerAngles = new Vector3(0, this.XRRigBase.transform.eulerAngles.y, 0);
 				VRMainMenuBehaviour.RepositionMenu();
 			}
+		}
+
+		private void SetRoadsLayer()
+		{
+			var roadMeshes = FindObjectsOfType<EasyRoads3Dv3.ERModularRoad>();
+			foreach(var roadMesh in roadMeshes)
+			{
+				roadMesh.gameObject.layer = LowCamerasDetour.ROADMESHLAYER;
+				for(int i=0; i<roadMesh.transform.childCount; i++)
+				{
+					var child = roadMesh.transform.GetChild(i);
+					if(child.name.StartsWith("RockWall", StringComparison.CurrentCultureIgnoreCase))
+					{
+						child.gameObject.layer = LowCamerasDetour.ROADMESHLAYER;
+					}
+				}
+			}
+#if DEBUG
+			Plugin.loggerInstance.LogMessage($"Successfully set {roadMeshes.Length} meshes to laye {LowCamerasDetour.ROADMESHLAYER}");
+#endif
 		}
 
 		internal void SelfDestroy()

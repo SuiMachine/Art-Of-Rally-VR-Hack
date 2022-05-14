@@ -12,6 +12,9 @@ namespace ArtOfRallySuiVR.Hacks.HookPoints
 	{
 		public static bool Use;
 		private static int CachedLayerMask;
+		public const int ROADMESHLAYER = 4;
+		public const int ROADMESHLAYERMASK = 1 << 4;
+
 
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(CarCameras), "Start")]
@@ -27,7 +30,7 @@ namespace ArtOfRallySuiVR.Hacks.HookPoints
 				___CameraAnglesList[(int)CameraAngle.CameraAngles.CAMERA6] = new CameraAngle(5.5f, 2.5f, -3, CameraAngle.CameraAngles.CAMERA6);
 				___CameraAnglesList[(int)CameraAngle.CameraAngles.CAMERA7] = new CameraAngle(4, 3f, -2, CameraAngle.CameraAngles.CAMERA7);
 				___CameraAnglesList[(int)CameraAngle.CameraAngles.CAMERA8] = new CameraAngle(4, 2.5f, -2, CameraAngle.CameraAngles.CAMERA8);
-				CachedLayerMask = LayerMask.GetMask("Terrain");
+				CachedLayerMask = LayerMask.GetMask("Terrain") | ROADMESHLAYERMASK;
 			}
 		}
 

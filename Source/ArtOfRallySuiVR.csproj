@@ -4,7 +4,7 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ArtOfRallySuiVR</AssemblyName>
     <Description>VR hack for Art of Rally</Description>
-    <Version>0.6.0</Version>
+    <Version>0.6.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -40,6 +40,10 @@
     </Reference>
     <Reference Include="AwesomeTechnologies.VegetationStudioPro.Runtime">
       <HintPath>D:\Steam\steamapps\common\artofrally\artofrally_Data\Managed\AwesomeTechnologies.VegetationStudioPro.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="EasyRoads3Dv3">
+      <HintPath>D:\Steam\steamapps\common\artofrally\artofrally_Data\Managed\EasyRoads3Dv3.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
