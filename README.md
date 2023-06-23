@@ -25,6 +25,8 @@ Installation
 * Drag and drop the game's exe onto UnityVRPatcher.exe - this should patch all the necessery files and also copy the content of the release to appropriate directories within the game.
 * Once you want to play the game in VR mode, launch the game with ```-vrmode OpenVR```command-line argument - refer to this page for how to use them https://www.pcgamingwiki.com/wiki/Glossary:Command_line_arguments. Launching the game without it, will start the game normally without modifications applied.
 
+If a patch comes out and gamemanagers changes, just run a VR patcher again on the exe.
+
 Additional options
 --------
 * It's possible to enable low-cam in this hack. To do this run the game at least once, then edit file ```BepInEx/config/ArtOfRallySuiVR.cfg``` and set ```EnableLowCam``` to true. Note that UI may is not designed for cameras like this.
