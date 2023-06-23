@@ -20,7 +20,10 @@ Things that won't happen
 
 Installation
 --------
-* Copy the files from Release directory into the game directory. Then start the game with ```-vrmode OpenVR``` command-line argument (otherwise it starts it as None).
+* Download the release files and make sure to extract it (do not try launching UnityVRPatcher.exe without extracting it).
+* Go to **Art of Rally** directory.
+* Drag and drop the game's exe onto UnityVRPatcher.exe - this should patch all the necessery files and also copy the content of the release to appropriate directories within the game.
+* Once you want to play the game in VR mode, launch the game with ```-vrmode OpenVR```command-line argument - refer to this page for how to use them https://www.pcgamingwiki.com/wiki/Glossary:Command_line_arguments. Launching the game without it, will start the game normally without modifications applied.
 
 Additional options
 --------
@@ -33,5 +36,5 @@ Third-party libraries used:
 
 Made possible thanks to:
 --------
-* Raicuparta [YouTube](https://www.youtube.com/watch?v=Gt_kIrmTl44) / [Github](https://github.com/Raicuparta)
+* Raicuparta [Github](https://github.com/Raicuparta) and his [unity-vr-patcher](https://github.com/Raicuparta/unity-vr-patcher).
 * [UABEA project](https://github.com/nesrak1/UABEA/)
