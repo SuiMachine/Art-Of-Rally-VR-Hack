@@ -4,7 +4,7 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>ArtOfRallySuiVR</AssemblyName>
     <Description>VR hack for Art of Rally</Description>
-    <Version>0.6.1</Version>
+    <Version>0.7.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
