@@ -1,6 +1,6 @@
 Art of Rally - VR Hack
 ============
-Currently an experimental VR hack for Art of Rally.
+A simple VR hack for Art of Rally. Please do not report any problems caused by this hack to the game developers - respect their time!
 
 To do
 --------
